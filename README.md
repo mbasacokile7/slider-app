@@ -2,58 +2,62 @@
 
 [Slider](https://www.figma.com/file/QfMzzThSYmgabSvn4t8Yfe/Slider?node-id=0%3A1&t=IpsYjMUn3Xj3Hs3N-1)
 
-## Steps
+## Slider App — Course Practice Project
 
-#### Explore Data
+This project was built to apply lessons learned from an online React course. It implements a simple carousel slider UI and demonstrates practical use of React concepts covered in the course.
 
-Explore arrays in data.js
+**Topics covered:**
 
-#### Import Data and Set State Value
+- **State management:** using `useState` to track the active slide and lists of items.
+- **Side effects:** using `useEffect` for auto-play behavior and lifecycle-like effects.
+- **Rendering data:** mapping arrays (from `data.js`) into slide components.
+- **Functional components:** composing the UI from small, reusable functions.
+- **Modulo operator:** used to wrap slide indices when navigating (ensures circular navigation).
+- **Accessibility & UI polish:** keyboard navigation and clear focus states (basic), responsive layout.
 
-Create Carousel.jsx, import all arrays from data.js and set up state value using the useState hook, use shortList as default value (for now).
+**Notable implementation details**
 
-#### Setup Container and Prev/Next Buttons
+- `Carousel.jsx` contains the core slider logic and renders slides from the `data.js` arrays.
+- Auto-play is implemented with `useEffect` + `setInterval`, and cleanup is handled properly to avoid leaks.
+- Navigation uses a simple index-based approach with modulo arithmetic to wrap around edges.
+- Styling is plain CSS in `index.css` for clarity and easy learning.
 
-In the return statement, set up a container element to hold all the slides. Inside the container, iterate over the people state value to create each slide.
+Screenshot
 
-Set up prev and next buttons outside the container element. You can use the onClick event to trigger functions that will change the current slide.
+![Carousel UI](Carousel-UI.png)
 
-#### Setup CSS
+Quick start
 
-Use CSS to style the container and slides. Set the container to position:relative and the slides and prev/next buttons to position:absolute. You can also set the width and height of the container and slides to control their size.
+1. Install dependencies:
 
-Switch default value in people state value. Set it equal to list or longList
-
-#### Main Logic
-
-To move the slides back and forth, use the transform property with a translateX value. For example, to move the slides to the left, you can use the transform:translateX(-100%) property however to move the slides to the right, you can use the transform:translateX(100%) property. For the active slide we will use transform:translateX(0)
-
-#### Current Person
-
-Create a currentPerson state value in App.jsx and set it to 0 initially. This will allow you to keep track of the current slide being displayed.
-
-#### Prev and Next
-
-Implement the prev and next functionality using the setCurrentPerson function to update the currentPerson state value.
-
-#### Auto Slide
-
-Implement the auto slide functionality using the setInterval function to change the currentPerson state value at regular intervals.
-
-#### Extra - React Slick Library
-
-[React Slick Docs](https://react-slick.neostack.com/)
-
-```sh
-npm install react-slick slick-carousel --save
+```bash
+npm install
 ```
 
-Overall, the flow of the application should look something like this:
+2. Start development server:
 
-- In App.jsx, import the people array from data.js and set it up as a state value using the useState hook.
-- In the return statement, set up a container element to hold all the slides, and iterate over the people state value to create each slide.
-- Set up prev and next buttons and style the container,slides and buttons.
-- Uncomment the rest of the items in the people array.
-- Create a currentPerson state value in App.jsx and set it to initially.
-- Implement the prev and next functionality using the setCurrentPerson function to update the currentPerson state value and move the slides back and forth using the transform property with a translateX value.
-- Implement the auto slide functionality using the setInterval function to change the currentPerson state value at regular intervals.
+```bash
+npm run dev
+```
+
+Files to inspect
+
+- `src/Components/Carousel.jsx` — slider component and core logic.
+- `src/data.js` — sample data used to render slides.
+- `index.css` — styles for the carousel and layout.
+
+Purpose
+
+This repository is primarily an exercise project — a place to practice React hooks, component composition, and UI logic introduced in the course. It intentionally keeps dependencies minimal so learners can focus on core React patterns.
+
+Questions or next steps
+
+If you'd like, I can:
+
+- Add keyboard controls or ARIA attributes for better accessibility.
+- Add unit tests for navigation logic.
+- Extract a minimal demo page to showcase the component.
+
+Credits
+
+Built while following an online React course — used for hands-on practice and experimentation.
