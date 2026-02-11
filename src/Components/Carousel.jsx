@@ -1,5 +1,5 @@
 // Import the different data lists
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { shortList, list, longList } from "../data";
 import { FaQuoteRight, FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import { FiChevronRight, FiChevronLeft } from "react-icons/fi";
@@ -8,7 +8,7 @@ function Carousel() {
   const [people, setPeople] = useState(list);
 
   // Set up a currentPerson state value to move through the carousel
-  const [currentPerson, setCurrentPerson] = useState(2);
+  const [currentPerson, setCurrentPerson] = useState(0);
   // Functions for sliding through the carousel
 
   // Previous slide
@@ -23,9 +23,20 @@ function Carousel() {
   function nextSlide() {
     setCurrentPerson((oldPerson) => {
       const result = (oldPerson + 1) % people.length;
+      console.log(`This is Old Person value: ${oldPerson}`);
+      console.log(`The new index ${result}`);
       return result;
     });
   }
+
+  // Auto-Scroll Functionality
+  // use Effect plus setInterval function
+  useEffect(() => {
+    let sliderId = setInterval(() => {
+      nextSlide();
+    }, 2000);
+    return clearInterval(sliderId);
+  }, [currentPerson]);
 
   return (
     <section className="slider-container">
